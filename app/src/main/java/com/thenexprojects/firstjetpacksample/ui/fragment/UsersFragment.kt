@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -71,7 +72,7 @@ class UsersFragment : BaseFragment(), UserClickListener, UserAdapterResultListen
     }
 
     private fun onUserSimpleClick(user: User) {
-        //todo will take user to the other page
+        findNavController().navigate(UsersFragmentDirections.actionUsersFragmentToUserDetailFragment(user))
     }
 
     private fun onUserLongClick(user: User) {

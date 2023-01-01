@@ -45,9 +45,9 @@ class UserDialog : DialogFragment(R.layout.user_dialog) {
             UserDialogOperationType.UPDATE -> {
                 binding.apply {
                     txtId.visibility = VISIBLE
-                    txtId.text = user!!.id.toString()
+                    txtId.text = "ID = ${user!!.id.toString()}"
                     commit.setText(R.string.update)
-                    ageLayout.editText!!.setText("ID = " + user!!.age.toString())
+                    ageLayout.editText!!.setText(user!!.age.toString())
                     nameLayout.editText!!.setText(user!!.name)
                     surnameLayout.editText!!.setText(user!!.surname)
                     usernameLayout.editText!!.setText(user!!.username)
