@@ -42,6 +42,16 @@ class UsersAdapter(private val userClickListener: UserClickListener): RecyclerVi
         notifyItemInserted(itemCount)
     }
 
+    fun updateUser(user: User){
+        for(i in users.indices){
+            if(users[i].id == user.id){
+                users[i] = user
+                notifyItemChanged(i)
+                return
+            }
+        }
+    }
+
     fun removeUserById(id: Int){
         var userPosition:Int? = null
         users.forEachIndexed { index, user ->
