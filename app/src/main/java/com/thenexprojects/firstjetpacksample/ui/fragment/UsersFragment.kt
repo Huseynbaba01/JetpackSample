@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.thenexprojects.firstjetpacksample.data.local.room.RoomDBHelper
 import com.thenexprojects.firstjetpacksample.databinding.FragmentUsersBinding
 import com.thenexprojects.firstjetpacksample.listener.UserAdapterResultListener
 import com.thenexprojects.firstjetpacksample.listener.UserClickListener
@@ -40,7 +41,8 @@ class UsersFragment : BaseFragment(), UserClickListener, UserAdapterResultListen
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                adapter.removeUserById(adapter.users[viewHolder.adapterPosition].id?:-1)
+                RoomDBHelper.getRoomInstance(requireContext()).usersDao().delete(adapter.users[viewHolder.adapterPosition])
+                refreshAdapterElements()
             }
 
         }
@@ -68,11 +70,11 @@ class UsersFragment : BaseFragment(), UserClickListener, UserAdapterResultListen
 
     override fun onClick(user: User, isLongClick: Boolean) {
         if(isLongClick) onUserLongClick(user)
-        else onUserSimpleClick(user)
+        else onUserSimpleClick(user.id)
     }
 
-    private fun onUserSimpleClick(user: User) {
-        findNavController().navigate(UsersFragmentDirections.actionUsersFragmentToUserDetailFragment(user))
+    private fun onUserSimpleClick(userId: Int) {
+        findNavController().navigate(UsersFragmentDirections.actionUsersFragmentToUserDetailFragment(userId))
     }
 
     private fun onUserLongClick(user: User) {
@@ -87,13 +89,20 @@ class UsersFragment : BaseFragment(), UserClickListener, UserAdapterResultListen
     }
 
     override fun onResultsAvailable(user: User, operationType: UserDialogOperationType) {
+        val room = RoomDBHelper.getRoomInstance(requireContext())
         when(operationType){
             UserDialogOperationType.ADD -> {
-                adapter.addUser(user)
+                room.usersDao().insert(user)
+                refreshAdapterElements()
             }
             UserDialogOperationType.UPDATE -> {
-                adapter.updateUser(user)
+                room.usersDao().update(user)
+                refreshAdapterElements()
             }
         }
+    }
+
+    fun refreshAdapterElements(){
+        adapter.refreshItems(RoomDBHelper.getRoomInstance(requireContext()).usersDao().getAll())
     }
 }

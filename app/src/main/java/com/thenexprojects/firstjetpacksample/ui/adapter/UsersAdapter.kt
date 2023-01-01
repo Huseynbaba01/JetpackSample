@@ -10,7 +10,7 @@ import com.thenexprojects.firstjetpacksample.model.User
 
 class UsersAdapter(private val userClickListener: UserClickListener): RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
 
-    var users = arrayListOf<User>()
+    var users = listOf<User>()
 
     inner class ViewHolder(val binding: ListItemUsersBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -37,33 +37,8 @@ class UsersAdapter(private val userClickListener: UserClickListener): RecyclerVi
 
     override fun getItemCount() = users.size
 
-    fun addUser(user: User){
-        users.add(user)
-        notifyItemInserted(itemCount)
-    }
-
-    fun updateUser(user: User){
-        for(i in users.indices){
-            if(users[i].id == user.id){
-                users[i] = user
-                notifyItemChanged(i)
-                return
-            }
-        }
-    }
-
-    fun removeUserById(id: Int){
-        var userPosition:Int? = null
-        users.forEachIndexed { index, user ->
-            if(user.id == id){
-                userPosition = index
-            }
-        }
-        userPosition?.let {
-            users.removeAt(it)
-            notifyItemRemoved(it)
-        }?: run {
-            Log.d("UsersAdapter", "No user found to remove")
-        }
+    fun refreshItems(newItems: List<User>){
+        users = newItems
+        notifyDataSetChanged()
     }
 }

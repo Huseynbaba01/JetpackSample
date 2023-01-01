@@ -11,8 +11,8 @@
         android:label="fragment_user_detail"
         tools:layout="@layout/fragment_user_detail" >
         <argument
-            android:name="user_data"
-            app:argType="com.thenexprojects.firstjetpacksample.model.User" />
+            android:name="user_id"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/usersFragment"

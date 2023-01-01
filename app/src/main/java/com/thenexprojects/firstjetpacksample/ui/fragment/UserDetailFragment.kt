@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
+import com.thenexprojects.firstjetpacksample.data.local.room.RoomDBHelper
 import com.thenexprojects.firstjetpacksample.databinding.FragmentUserDetailBinding
 
 class UserDetailFragment : BaseFragment() {
@@ -21,12 +22,14 @@ class UserDetailFragment : BaseFragment() {
     ): View {
         binding = FragmentUserDetailBinding.inflate(inflater, container, false)
         setListeners()
+        val room = RoomDBHelper.getRoomInstance(requireContext())
+        val user = room.usersDao().getById(args.userId)
         binding.also {
-            it.txtId.text = "ID = ${args.userData.id}"
-            it.username.text = args.userData.username
-            it.name.text = args.userData.name
-            it.surname.text = args.userData.surname
-            it.age.text = args.userData.age.toString()
+            it.txtId.text = "ID = ${args.userId}"
+            it.username.text = user.username
+            it.name.text = user.name
+            it.surname.text = user.surname
+            it.age.text =user.age.toString()
         }
         return binding.root
     }
