@@ -62,7 +62,6 @@ class UsersFragment : BaseFragment(), UserClickListener, UserAdapterResultListen
                 }
                 show(this@UsersFragment.childFragmentManager, "dialog")
             }
-
         }
     }
 

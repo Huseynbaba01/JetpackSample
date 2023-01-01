@@ -4,6 +4,6 @@ import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
 abstract class BaseFragment: Fragment() {
-    abstract val binding: ViewBinding
-    abstract fun setListeners()
+    protected abstract val binding: ViewBinding
+    protected abstract fun setListeners()
 }
