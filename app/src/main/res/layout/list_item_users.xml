@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    app:contentPadding="10dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:src="@drawable/user_icon_skyblue"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/icon"
+            android:textColor="@color/black"
+            android:text="Id = 0"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            />
+
+        <TextView
+            android:id="@+id/name"
+            android:text="Name"
+            android:textSize="20sp"
+            android:layout_toRightOf="@id/icon"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id="@+id/surname"
+            android:text="Surname"
+            android:textSize="20sp"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/icon"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id="@+id/username"
+            android:text="Username"
+            android:textSize="20sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id="@+id/age"
+            android:text="Age"
+            android:textSize="20sp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </RelativeLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

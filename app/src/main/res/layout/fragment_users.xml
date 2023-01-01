@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".ui.fragment.UsersFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/users"
+        android:layout_width="match_parent"
+        tools:listitem="@layout/list_item_users"
+        android:layout_height="0dp"
+        android:layout_above="@id/add"
+        android:layout_alignParentTop="true" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/add"
+        android:backgroundTint="#35C600"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/update"
+        android:text="add" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/remove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FF0000"
+        android:layout_alignParentBottom="true"
+        android:text="remove" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/update"
+        android:backgroundTint="@color/teal_700"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/remove"
+        android:text="update" />
+
+</RelativeLayout>
