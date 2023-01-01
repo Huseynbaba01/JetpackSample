@@ -1,9 +1,9 @@
-package com.thenexprojects.firstjetpacksample.ui.model
+package com.thenexprojects.firstjetpacksample.model
 
 data class User(
     var id: Int? = null,
     var username: String,
     var name: String,
     var surname: String,
-    var age: String
+    var age: Int
 )
