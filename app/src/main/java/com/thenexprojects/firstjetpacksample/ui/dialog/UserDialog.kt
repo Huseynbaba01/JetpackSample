@@ -30,7 +30,7 @@ class UserDialog : DialogFragment(R.layout.user_dialog) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Objects.requireNonNull(dialog)!!.window!!.requestFeature(Window.FEATURE_NO_TITLE)
+//        Objects.requireNonNull(dialog)!!.window!!.requestFeature(Window.FEATURE_NO_TITLE)
         binding = UserDialogBinding.inflate(inflater, container, false)
         opType = requireArguments().getSerializable("opType") as UserDialogOperationType
         user = requireArguments().getSerializable("user") as User?
@@ -73,6 +73,6 @@ class UserDialog : DialogFragment(R.layout.user_dialog) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 }

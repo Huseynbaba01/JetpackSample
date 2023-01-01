@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.thenexprojects.firstjetpacksample.databinding.FragmentUsersBinding
 import com.thenexprojects.firstjetpacksample.listener.UserAdapterResultListener
 import com.thenexprojects.firstjetpacksample.listener.UserClickListener
@@ -27,10 +29,25 @@ class UsersFragment : BaseFragment(), UserClickListener, UserAdapterResultListen
     ): View {
         binding = FragmentUsersBinding.inflate(inflater, container, false)
         setListeners()
+        val touchHelperCallback = object: ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return true
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                adapter.removeUserById(adapter.users[viewHolder.adapterPosition].id?:-1)
+            }
+
+        }
         binding.users.apply {
             layoutManager = LinearLayoutManager(requireContext())
             //we differentiate between recyclerView context (from apply -> this) and this class (this@UsersFragment)
             this.adapter = this@UsersFragment.adapter
+            ItemTouchHelper(touchHelperCallback).attachToRecyclerView(this)
         }
         return binding.root
     }
